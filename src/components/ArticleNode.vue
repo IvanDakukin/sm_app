@@ -1,5 +1,5 @@
 <template>
-  <div class="article">
+  <div class="article" v-bind:class="{ article_published: isPublished }">
     <div class="article__title">
       <h2>{{ title }}</h2>
     </div>
@@ -34,5 +34,8 @@ export default {
 }
 .article__body {
   padding: 10px;
+}
+.article_published {
+  background-color: rgb(255, 126, 126);
 }
 </style>
