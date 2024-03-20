@@ -1,11 +1,13 @@
 <template>
-  <div class="articlesList">
-    <div class="articleList__body" v-if="articles.length">
+  <div class="article-list">
+    <div class="article-list__body" v-if="articles.length">
       <Article
         v-for="article of articles"
         :key="article.id"
         :title="article.title"
         :body="article.body"
+        :isPublished="article.isPublished"
+        :author="article.author"
       ></Article>
     </div>
     <div v-else>No articles in the list.</div>
@@ -27,18 +29,21 @@ export default {
           title: "Title 1",
           body: "Learn Vue",
           isPublished: true,
+          author: "Ivan Dakukin",
         },
         {
           id: 2,
           title: "Title 2",
           body: "Lorem ipsum",
           isPublished: true,
+          author: "Ivan Dakukin",
         },
         {
           id: 3,
           title: "Title 3",
           body: "Text example",
           isPublished: false,
+          author: "Ivan Dakukin",
         },
       ],
     };
@@ -47,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.articleList__body {
+.article-list__body {
   list-style: none;
   padding: 0;
   display: grid;
