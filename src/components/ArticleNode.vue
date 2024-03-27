@@ -31,6 +31,11 @@ export default {
       return this.isPublished ? this.author.toUpperCase() : this.author;
     },
   },
+  watch: {
+    isPublished(oldVal, newVal) {
+      console.log(`Статус публикации сменён c ${oldVal} на ${newVal}!`);
+    },
+  },
 };
 </script>
 
