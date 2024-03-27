@@ -30,29 +30,7 @@ export default {
   },
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title: "Title 1",
-          body: "Learn Vue",
-          isPublished: true,
-          author: "Ivan Dakukin",
-        },
-        {
-          id: 2,
-          title: "Title 2",
-          body: "Lorem ipsum",
-          isPublished: true,
-          author: "Ivan Dakukin",
-        },
-        {
-          id: 3,
-          title: "Title 3",
-          body: "Text example",
-          isPublished: false,
-          author: "Ivan Dakukin",
-        },
-      ],
+      articles: [],
     };
   },
   methods: {
@@ -67,6 +45,11 @@ export default {
       const targetArticle = this.articles.find((article) => article.id == id);
       targetArticle.isPublished = !targetArticle.isPublished;
     },
+  },
+  beforeMount() {
+    fetch("/articles.json")
+      .then((res) => res.json())
+      .then((articles) => (this.articles = articles));
   },
 };
 </script>
