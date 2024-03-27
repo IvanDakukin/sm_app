@@ -11,15 +11,20 @@
       ></Article>
     </div>
     <div v-else>No articles in the list.</div>
+    <div class="article-form">
+      <ArticleForm v-on:add-article="addArticle"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Article from "@/components/ArticleNode.vue";
+import ArticleForm from "@/components/ArticleForm.vue";
 export default {
   name: "ArticleList",
   components: {
     Article,
+    ArticleForm,
   },
   data() {
     return {
@@ -47,6 +52,15 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    addArticle(article) {
+      let newArticle = {
+        id: this.articles.length + 1,
+        ...article,
+      };
+      this.articles.push(newArticle);
+    },
   },
 };
 </script>
