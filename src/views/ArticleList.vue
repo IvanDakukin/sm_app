@@ -9,11 +9,12 @@
         :body="article.body"
         :isPublished="article.isPublished"
         :author="article.author"
+        v-on:toggle-publish-status="togglePublishStatus"
       ></Article>
     </div>
     <div v-else>No articles in the list.</div>
     <div class="article-form">
-      <ArticleForm v-on:add-article="addArticle"/>
+      <ArticleForm v-on:add-article="addArticle" />
     </div>
   </div>
 </template>
@@ -61,6 +62,10 @@ export default {
         ...article,
       };
       this.articles.push(newArticle);
+    },
+    togglePublishStatus(id) {
+      const targetArticle = this.articles.find((article) => article.id == id);
+      targetArticle.isPublished = !targetArticle.isPublished;
     },
   },
 };

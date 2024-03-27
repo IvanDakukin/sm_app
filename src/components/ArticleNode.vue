@@ -9,6 +9,11 @@
     <div class="article__body">
       <p>{{ body }}</p>
     </div>
+    <div class="article__toggle-status-btn">
+      <button v-on:click="$emit('toggle-publish-status', id)">
+        Изменить статус<br />публикации
+      </button>
+    </div>
   </div>
 </template>
 
@@ -51,5 +56,10 @@ export default {
 .article__author {
   color: rgba(54, 54, 54, 0.715);
   padding-bottom: 10px;
+}
+.article__toggle-status-btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 </style>
