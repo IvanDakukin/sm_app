@@ -4,6 +4,7 @@
       <Article
         v-for="article of articles"
         :key="article.id"
+        :id="article.id"
         :title="article.title"
         :body="article.body"
         :isPublished="article.isPublished"
