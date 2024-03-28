@@ -4,6 +4,7 @@ import ArticleList from "@/views/ArticleList.vue";
 import AboutView from "@/views/AboutView.vue";
 import ArticleNode from "@/components/ArticleNode.vue";
 import ArticleForm from "@/components/ArticleForm.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,7 @@ const routes = [
   {
     path: "/article/:id",
     component: ArticleNode,
+    props: (route) => store.state.articles.find((x) => x.id == route.params.id)
   },
   {
     path: "/new",
