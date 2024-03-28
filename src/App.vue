@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <ArticleList></ArticleList>
+    <nav>
+      <router-link to="/">Главная</router-link>
+      <router-link to="/about">О нас</router-link>
+      <router-link to="/new">Добавить статью</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ArticleList from "./views/ArticleList.vue";
 export default {
   name: "App",
-  components: {
-    ArticleList,
-  },
 };
 </script>
 
@@ -20,5 +21,10 @@ export default {
   max-width: 1200px;
   margin: auto;
   margin-top: 60px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
 }
 </style>
