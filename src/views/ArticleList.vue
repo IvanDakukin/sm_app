@@ -38,7 +38,7 @@ export default {
     },
   },
   computed: mapState({
-		articles: state => state.articles,
+		articles: state => state.moduleArticles.articles,
 	})
 };
 </script>

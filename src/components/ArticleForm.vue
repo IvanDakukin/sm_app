@@ -48,7 +48,7 @@ export default {
   methods: {
     addArticle() {
       let newArticle = {
-        id: store.state.articles.length + 1,
+        id: store.state.moduleArticles.articles.length + 1,
         ...this.article,
       };
       store.dispatch("addArticle", newArticle);

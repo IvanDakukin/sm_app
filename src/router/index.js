@@ -22,7 +22,8 @@ const routes = [
   {
     path: "/article/:id",
     component: ArticleNode,
-    props: (route) => store.state.articles.find((x) => x.id == route.params.id)
+    props: (route) =>
+      store.state.moduleArticles.articles.find((x) => x.id == route.params.id),
   },
   {
     path: "/new",

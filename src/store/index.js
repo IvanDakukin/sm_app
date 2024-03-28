@@ -1,12 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import services from "../services";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+const moduleArticles = {
+  state: () => ({
     articles: [],
-  },
+  }),
   mutations: {
     fetchArticles(state, articles) {
       state.articles = articles;
@@ -22,16 +23,19 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchArticles(context) {
-      fetch("/articles.json")
-        .then((response) => response.json())
-        .then((articles) => context.commit("fetchArticles", articles));
-    },
     addArticle(context, article) {
       context.commit("addArticle", article);
     },
+
     togglePublish(context, articleId) {
       context.commit("togglePublish", articleId);
     },
+  },
+};
+
+export default new Vuex.Store({
+  modules: {
+    moduleArticles: moduleArticles,
+    moduleFetch: services,
   },
 });
