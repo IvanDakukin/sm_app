@@ -1,7 +1,9 @@
 <template>
   <div class="article" v-bind:class="{ article_published: isPublished }">
     <div class="article__head">
-      <h2>{{ title }}</h2>
+      <router-link :to="articleUrl">
+        <h2>{{ title }}</h2>
+      </router-link>
       <div class="article__author">
         {{ authorName }}
       </div>
@@ -10,7 +12,7 @@
       <p>{{ body }}</p>
     </div>
     <div class="article__toggle-status-btn">
-      <button v-on:click="$emit('toggle-publish-status', id)">
+      <button @click="togglePublish">
         Изменить статус<br />публикации
       </button>
     </div>
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+import store from '@/store';
 export default {
   props: {
     id: Number,
@@ -30,12 +33,20 @@ export default {
     authorName() {
       return this.isPublished ? this.author.toUpperCase() : this.author;
     },
+    articleUrl() {
+      return `article/${this.id}`;
+    },
   },
   watch: {
     isPublished(oldVal, newVal) {
       console.log(`Статус публикации сменён c ${oldVal} на ${newVal}!`);
     },
   },
+  methods: {
+    togglePublish() {
+      store.dispatch("togglePublish", this.id);
+    }
+  }
 };
 </script>
 

@@ -13,9 +13,6 @@
       ></Article>
     </div>
     <div v-else>No articles in the list.</div>
-    <div class="article-form">
-      <ArticleForm v-on:add-article="addArticle" />
-    </div>
   </div>
 </template>
 
@@ -26,12 +23,6 @@ export default {
   name: "ArticleList",
   components: {
     Article,
-    ArticleForm,
-  },
-  data() {
-    return {
-      articles: [],
-    };
   },
   methods: {
     addArticle(article) {

@@ -27,15 +27,13 @@
       <label>Опубликована</label>
       <input type="checkbox" v-model="article.isPublished" />
     </div>
-    <input
-      type="submit"
-      value="Добавить"
-      v-on:click.prevent="$emit('add-article', article)"
-    />
+    <input type="submit" value="Добавить" @click.prevent="addArticle" />
   </form>
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
   data() {
     return {
@@ -46,6 +44,16 @@ export default {
         isPublished: false,
       },
     };
+  },
+  methods: {
+    addArticle() {
+      let newArticle = {
+        id: store.state.articles.length + 1,
+        ...this.article,
+      };
+      store.dispatch("addArticle", newArticle);
+      this.$router.push("/");
+    },
   },
 };
 </script>
