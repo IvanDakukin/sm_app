@@ -21,7 +21,7 @@
 
 <script>
 import Article from "@/components/ArticleNode.vue";
-import ArticleForm from "@/components/ArticleForm.vue";
+import { mapState } from 'vuex';
 export default {
   name: "ArticleList",
   components: {
@@ -46,11 +46,9 @@ export default {
       targetArticle.isPublished = !targetArticle.isPublished;
     },
   },
-  beforeMount() {
-    fetch("/articles.json")
-      .then((res) => res.json())
-      .then((articles) => (this.articles = articles));
-  },
+  computed: mapState({
+		articles: state => state.articles,
+	})
 };
 </script>
 
